@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rover Mission Control</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <svg class="patch" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="46" fill="#0b1a2e" stroke="#ffb340" stroke-width="4"/>
+    <circle cx="50" cy="50" r="38" fill="none" stroke="#1d2b3d" stroke-width="2"/>
+    <path d="M14 70 Q50 30 86 70" fill="none" stroke="#4fc3ff" stroke-width="3"/>
+    <rect x="34" y="44" width="32" height="14" rx="3" fill="#39ff88"/>
+    <circle cx="40" cy="62" r="5" fill="#d6e2ee"/><circle cx="60" cy="62" r="5" fill="#d6e2ee"/>
+    <circle cx="50" cy="22" r="3" fill="#ffb340"/>
+  </svg>
+  <div class="title">
+    <h1>ROVER MISSION CONTROL</h1>
+    <small>CHALLENGE 1 · OBSTACLE AVOIDANCE · FLIGHT CREW OF 6</small>
+  </div>
+  <div class="clocks">
+    <div class="clock"><small>UTC</small><b id="utc">--:--:--</b></div>
+    <div class="clock"><small>MET</small><b id="met">00:00:00</b></div>
+  </div>
+</div>
+<main>
+  <section class="panel" id="telem" data-label="TELEMETRY">
+    <div class="stats">
+      <div class="stat"><small>MODE</small><b id="mode">-</b></div>
+      <div class="stat"><small>RANGE AHEAD</small><b id="dist">-</b></div>
+      <div class="stat"><small>DOWNLINK</small><b id="link" class="bad">ACQ</b></div>
+    </div>
+    <div class="bar"><i id="distbar"></i></div>
+    <div class="scale"><span>0</span><span>50</span><span>100</span><span>150</span><span>200 CM</span></div>
+  </section>
+  <section class="panel" id="modes" data-label="FLIGHT DIRECTOR · MODE SELECT">
+    <div class="modes">
+      <button data-mode="stop" id="stop">Abort</button>
+      <button data-mode="default">Default</button>
+      <button data-mode="manual">Manual</button>
+      <button data-mode="follow">Follow</button>
+      <button data-mode="radar">Radar</button>
+    </div>
+  </section>
+  <section class="panel" id="radarp" data-label="NAV · SONAR SWEEP">
+    <canvas id="radar" width="480" height="260"></canvas>
+  </section>
+  <section class="panel" id="drivep" data-label="GUIDANCE · MANUAL DRIVE">
+    <div class="pad">
+      <span></span><button data-drive="f">&#9650;</button><span></span>
+      <button data-drive="l">&#9664;</button><button data-drive="s">&#9632;</button><button data-drive="r">&#9654;</button>
+      <span></span><button data-drive="b">&#9660;</button><span></span>
+    </div>
+    <p class="hint">HOLD TO DRIVE (SWITCHES TO MANUAL) · ARROW KEYS OK</p>
+  </section>
+  <section class="panel" id="comm" data-label="CAPCOM · VOICE LOOP">
+    <button id="voice">&#127908; Start voice</button>
+    <div id="heard">Say "rover" then: follow, default, radar, manual, stop, forward, back, left, right</div>
+  </section>
+  <section class="panel" id="logp" data-label="EVENT LOG">
+    <pre id="log"></pre>
+  </section>
+</main>
+<footer>BUILT BY STUDENTS IN 48 HOURS · HACKATHON 2026 · NO ROVERS WERE HARMED (YET)</footer>
+<script src="dashboard.js"></script>
+</body>
+</html>
