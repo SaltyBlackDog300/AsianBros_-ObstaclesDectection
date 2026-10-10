@@ -151,8 +151,18 @@ flowchart LR
 | ✏️ | Spent the day planning how to tackle the challenge: 2 wheels + motors + mainboard, light platform, sensor on a rotating mount, separate power for motors and sensor |
 | 📦 | Got the kit: Arduino UNO R4 WiFi, 2× 28BYJ-48 + ULN2003, HC-SR04, SG90, 2WD chassis |
 | 👥 | Split into 3 teams: **software**, **engineering**, **decoration** |
+| 🛠️ | Built the first prototype on the acrylic 2WD chassis |
 
-<p align="center"><img src="NOTEBOOK_SCAN_URL" alt="Day 1 brainstorm notes" width="600"></p>
+<table>
+  <tr>
+    <td align="center"><img src="images/day1_prototype.jpg" alt="First prototype" width="400"><br><sub>First prototype</sub></td>
+    <td align="center"><img src="images/day1_notes.jpg" alt="Brainstorm notes" width="400"><br><sub>Brainstorm notes</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/day1_planning.jpg" alt="Planning session" width="400"><br><sub>Planning the build</sub></td>
+    <td align="center"><img src="images/day1_team.jpg" alt="Team" width="400"><br><sub>Day 1 done</sub></td>
+  </tr>
+</table>
 </details>
 
 <details open>
@@ -173,6 +183,13 @@ flowchart LR
 | 🎙️ | Added voice control with the wake word **"rover"** |
 | ⚡ | Steppers hit their speed limit, so we swapped to **MG996R continuous servos** (D5/D6) and kept the stepper version in `backup_stepper/` |
 | 📝 | Wrote the README |
+
+<table>
+  <tr>
+    <td align="center"><img src="images/day2_obstacle_test.jpg" alt="Obstacle course test" width="400"><br><sub>Testing in a chair obstacle course</sub></td>
+    <td align="center"><img src="images/day2_3d_printing.jpg" alt="3D printing" width="400"><br><sub>3D printing parts</sub></td>
+  </tr>
+</table>
 </details>
 
 <details open>
