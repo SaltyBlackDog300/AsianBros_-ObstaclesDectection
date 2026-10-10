@@ -5,8 +5,8 @@ const int STOP_US = 1500;
 const int SPEED_US = 500;
 const int LEFT_TRIM_US = 0;
 const int RIGHT_TRIM_US = 0;
-const int LEFT_FORWARD = 1;
-const int RIGHT_FORWARD = -1;
+const int LEFT_FORWARD = -1;
+const int RIGHT_FORWARD = 1;
 
 static Servo leftWheel;
 static Servo rightWheel;
