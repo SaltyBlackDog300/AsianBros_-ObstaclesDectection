@@ -58,7 +58,7 @@ Our rover drives on its own, detects obstacles with an ultrasonic sensor mounted
 | HC-SR04 ultrasonic sensor | Distance measurement (2–400 cm) |
 | SG90 servo | Pans the sensor to scan routes |
 | 2WD chassis kit + caster | Frame |
-| Custom outer shell | Body cover designed by the decoration team |
+| Custom outer shell | Body cover designed in OpenSCAD by the decoration team |
 | 2× 18650 cells / USB power bank | Motor and logic power |
 
 ### 🔌 Pin map
@@ -156,11 +156,14 @@ flowchart LR
 <table>
   <tr>
     <td align="center"><img src="images/day1_prototype.jpg" alt="First prototype" width="400"><br><sub>First prototype</sub></td>
-    <td align="center"><img src="images/day1_notes.jpg" alt="Brainstorm notes" width="400"><br><sub>Brainstorm notes</sub></td>
+    <td align="center"><img src="images/day1_chassis_bottom.jpg" alt="Chassis underside" width="400"><br><sub>Chassis underside</sub></td>
   </tr>
   <tr>
+    <td align="center"><img src="images/day1_notes.jpg" alt="Brainstorm notes" width="400"><br><sub>Brainstorm notes</sub></td>
     <td align="center"><img src="images/day1_planning.jpg" alt="Planning session" width="400"><br><sub>Planning the build</sub></td>
-    <td align="center"><img src="images/day1_team.jpg" alt="Team" width="400"><br><sub>Day 1 done</sub></td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2"><img src="images/day1_team.jpg" alt="Team" width="400"><br><sub>Day 1 done</sub></td>
   </tr>
 </table>
 </details>
@@ -172,7 +175,8 @@ flowchart LR
 |:-:|---|
 | 🔁 | Had to rebuild things from scratch, both hardware and code |
 | 🔧 | Engineering team cut, drilled and assembled the body, then wired everything to the Arduino |
-| 🎨 | Decoration team designed the outer shell that covers the rover |
+| 🖨️ | Hieu 3D-printed the custom parts: sensor mount, brackets, adapter and platform |
+| 🎨 | Minh and Cuong designed the outer shell in **OpenSCAD** |
 | 💻 | Software team set up the toolchain and built the Wi-Fi dashboard with Stop / Avoid / Manual / Follow / Radar modes |
 | 🔥 | A jumper wire heated up from reversed wiring; found it and rewired |
 | 🐛 | Sensor stuck on `-1`: code pins didn't match the build. Fixed to Trig D11 / Echo D12 / servo D10 |
@@ -186,8 +190,21 @@ flowchart LR
 
 <table>
   <tr>
+    <td align="center"><img src="images/day2_wiring.jpg" alt="Electronics test bench" width="400"><br><sub>Electronics test bench</sub></td>
     <td align="center"><img src="images/day2_obstacle_test.jpg" alt="Obstacle course test" width="400"><br><sub>Testing in a chair obstacle course</sub></td>
-    <td align="center"><img src="images/day2_3d_printing.jpg" alt="3D printing" width="400"><br><sub>3D printing parts</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/day2_3d_printing.jpg" alt="3D printing" width="400"><br><sub>3D printing parts (Hieu)</sub></td>
+    <td align="center"><img src="images/cad_outer_shell.jpg" alt="Outer shell in OpenSCAD" width="400"><br><sub>Outer shell in OpenSCAD (Minh &amp; Cuong)</sub></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td align="center"><img src="images/cad_sensor_mount.jpg" alt="Sensor mount" width="190"><br><sub>Sensor mount</sub></td>
+    <td align="center"><img src="images/cad_bracket.jpg" alt="Bracket" width="190"><br><sub>Bracket</sub></td>
+    <td align="center"><img src="images/cad_adapter.jpg" alt="Adapter" width="190"><br><sub>Adapter</sub></td>
+    <td align="center"><img src="images/cad_platform.jpg" alt="Platform" width="190"><br><sub>Platform</sub></td>
   </tr>
 </table>
 </details>
@@ -216,8 +233,8 @@ Six BSc Computer Engineering students — **AsianBros**, split into three teams:
 | Team | Members | What they did |
 |---|---|---|
 | 💻 **Software** | Jason Williams, Sumaya Akter | Firmware, driving modes, Wi-Fi dashboard, voice control |
-| 🔧 **Engineering** | Anik Rahman Siam, Trong Hoang | Cutting, drilling, building the body, wiring everything to the Arduino |
-| 🎨 **Decoration** | Nhat Minh Nguyen, Le Xuan Cuong | Designed and built the outer shell that covers the rover |
+| 🔧 **Engineering** | Anik Rahman Siam, Trong Hoang | Cutting, drilling, building the body, wiring everything to the Arduino, 3D printing |
+| 🎨 **Decoration** | Nhat Minh Nguyen, Le Xuan Cuong | Designed the outer shell that covers the rover in OpenSCAD |
 
 
 ---
