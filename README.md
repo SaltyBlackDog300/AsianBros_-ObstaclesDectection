@@ -4,7 +4,7 @@
 
 **An autonomous 2WD rover that sees, decides and drives — controlled from any phone over Wi-Fi.**
 
-*Built in 48 hours at the LUT Finland DeepTech Hackathon · Challenge 1 · Oct 9–11, 2026*
+*Built in 48 hours at the LUTES Deep Tech Hackathon · Challenge 1 · Oct 9–11, 2026*
 
 ![Arduino](https://img.shields.io/badge/Arduino-UNO%20R4%20WiFi-00979D?style=for-the-badge&logo=arduino&logoColor=white)
 ![C++](https://img.shields.io/badge/C++-firmware-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
@@ -58,6 +58,7 @@ Our rover drives on its own, detects obstacles with an ultrasonic sensor mounted
 | HC-SR04 ultrasonic sensor | Distance measurement (2–400 cm) |
 | SG90 servo | Pans the sensor to scan routes |
 | 2WD chassis kit + caster | Frame |
+| Custom outer shell | Body cover designed by the decoration team |
 | 2× 18650 cells / USB power bank | Motor and logic power |
 
 ### 🔌 Pin map
@@ -142,25 +143,27 @@ flowchart LR
 </p>
 
 <details open>
-<summary><h3>🟦 Day 1 · Friday 9.10 — Kick-off & first moves</h3></summary>
+<summary><h3>🟦 Day 1 · Friday 9.10 — Planning</h3></summary>
 
 | | Milestone |
 |:-:|---|
 | 🤝 | Team of 6 formed, picked **Challenge 1: Small Robot That Measures Distance to Obstacles** |
-| ✏️ | Brainstormed on paper: 2 wheels + motors + mainboard, light platform, sensor on a rotating mount, separate power for motors and sensor |
+| ✏️ | Spent the day planning how to tackle the challenge: 2 wheels + motors + mainboard, light platform, sensor on a rotating mount, separate power for motors and sensor |
 | 📦 | Got the kit: Arduino UNO R4 WiFi, 2× 28BYJ-48 + ULN2003, HC-SR04, SG90, 2WD chassis |
-| 👥 | Split into 3 pairs: **chassis**, **electronics**, **software** |
-| 💻 | Set up the toolchain (`arduino-cli`, UNO R4 board package) and wrote the first sensor test |
-| 🌐 | First Wi-Fi dashboard with Stop / Avoid / Manual / Follow / Radar modes |
+| 👥 | Split into 3 teams: **software**, **engineering**, **decoration** |
 
 <p align="center"><img src="NOTEBOOK_SCAN_URL" alt="Day 1 brainstorm notes" width="600"></p>
 </details>
 
 <details open>
-<summary><h3>🟪 Day 2 · Saturday 10.10 — Build, break, fix</h3></summary>
+<summary><h3>🟪 Day 2 · Saturday 10.10 — Rebuilding from scratch</h3></summary>
 
 | | Milestone |
 |:-:|---|
+| 🔁 | Had to rebuild things from scratch, both hardware and code |
+| 🔧 | Engineering team cut, drilled and assembled the body, then wired everything to the Arduino |
+| 🎨 | Decoration team designed the outer shell that covers the rover |
+| 💻 | Software team set up the toolchain and built the Wi-Fi dashboard with Stop / Avoid / Manual / Follow / Radar modes |
 | 🔥 | A jumper wire heated up from reversed wiring; found it and rewired |
 | 🐛 | Sensor stuck on `-1`: code pins didn't match the build. Fixed to Trig D11 / Echo D12 / servo D10 |
 | 🗂️ | Restructured code into `src/core`, `src/modes`, `src/web`; split the dashboard into HTML/CSS/JS with a build script |
@@ -173,14 +176,15 @@ flowchart LR
 </details>
 
 <details open>
-<summary><h3>🟩 Day 3 · Sunday 11.10 — Polish & pitch</h3></summary>
+<summary><h3>🟩 Day 3 · Sunday 11.10 — Polish & pitch <i>(coming up)</i></h3></summary>
 
-| | Milestone |
+| | Plan |
 |:-:|---|
-| 🔧 | Final tuning on the servo drive |
-| 🎬 | Recorded the demo video |
-| ✅ | **16:30** Submitted |
-| 🎤 | **17:00** Pitch + live demo (5 min) and judge Q&A (3 min) |
+| ⏳ | Final tuning on the servo drive |
+| ⏳ | Fit the outer shell |
+| ⏳ | Record the demo video |
+| ⏳ | **16:30** Submit |
+| ⏳ | **17:00** Pitch + live demo (5 min) and judge Q&A (3 min) |
 </details>
 
 ## 🔮 Future work
@@ -190,10 +194,15 @@ flowchart LR
 
 ## 👥 Team
 
-Six BSc Computer Engineering students — **AsianBros**
+Six BSc Computer Engineering students — **AsianBros**, split into three teams:
 
-| Name | Role |
-|---|---|
+| Team | Members | What they did |
+|---|---|---|
+| 💻 **Software** | Jason Williams, Sumaya Akter | Firmware, driving modes, Wi-Fi dashboard, voice control |
+| 🔧 **Engineering** | Anik Rahman Siam, Trong Hoang | Cutting, drilling, building the body, wiring everything to the Arduino |
+| 🎨 **Decoration** | Nhat Minh Nguyen, Le Xuan Cuong | Designed and built the outer shell that covers the rover |
+
+---|---|
 | NAME_1 | Software |
 | NAME_2 | Software |
 | NAME_3 | Electronics |
@@ -205,6 +214,6 @@ Six BSc Computer Engineering students — **AsianBros**
 
 <div align="center">
 
-Made with ☕ and solder at **LUT Finland DeepTech Hackathon 2026**
+Made with ☕ and solder at **LUTES Deep Tech Hackathon 2026**
 
 </div>
