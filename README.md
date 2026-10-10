@@ -207,6 +207,15 @@ flowchart LR
     <td align="center"><img src="images/cad_platform.jpg" alt="Platform" width="190"><br><sub>Platform</sub></td>
   </tr>
 </table>
+
+<table>
+  <tr>
+    <td align="center"><a href="videos/rover_drive_test.mp4"><img src="images/rover_drive_test.gif" alt="Drive test" width="220"></a><br><sub>▶️ Drive test</sub></td>
+    <td align="center"><a href="videos/dashboard_control.mp4"><img src="images/dashboard_control.gif" alt="Dashboard control" width="220"></a><br><sub>▶️ Driving from the dashboard</sub></td>
+    <td align="center"><a href="videos/3d_printing.mp4"><img src="images/3d_printing.gif" alt="3D printing" width="220"></a><br><sub>▶️ 3D printing (Hieu)</sub></td>
+  </tr>
+</table>
+<p align="center"><sub>Click a clip to watch the full video.</sub></p>
 </details>
 
 <details open>
