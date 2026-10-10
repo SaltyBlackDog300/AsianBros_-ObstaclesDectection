@@ -55,20 +55,24 @@ Our rover drives on its own, detects obstacles with an ultrasonic sensor mounted
 |---|---|
 | Arduino UNO R4 WiFi | Brain + Wi-Fi web server (ESP32-S3 radio) |
 | 2× MG996R continuous-rotation servos | Drive wheels |
+| Buzzer | Sound feedback |
 | HC-SR04 ultrasonic sensor | Distance measurement (2–400 cm) |
 | SG90 servo | Pans the sensor to scan routes |
 | 2WD chassis kit + caster | Frame |
 | Custom outer shell | Body cover designed in OpenSCAD by the decoration team |
-| 2× 18650 cells / USB power bank | Motor and logic power |
+| Battery pack | Powers the board through VIN |
 
-### 🔌 Pin map
+### 🔌 Wiring
 
-| Part | Pins |
-|---|---|
-| Left wheel servo | D5 |
-| Right wheel servo | D6 |
-| Servo signal | D10 |
-| HC-SR04 Trig / Echo | D11 / D12 |
+| Part | Wire | Connects to |
+|---|---|---|
+| 🔋 Battery | Red / Black | Arduino **VIN** / **GND** |
+| 🍞 Breadboard rails | + / − | Arduino **5V** / **GND** |
+| ⚙️ Left wheel servo (MG996R) | Red / Brown / Yellow | + rail / − rail / **D5** |
+| ⚙️ Right wheel servo (MG996R) | Red / Brown / Yellow | + rail / − rail / **D6** |
+| 🔄 Neck servo (SG90) | Red / Brown / Orange | + rail / − rail / **D9** |
+| 📡 Ultrasonic sensor (HC-SR04) | Vcc / Gnd / Trig / Echo | + rail / − rail / **D10** / **D11** |
+| 🔊 Buzzer | + / − | **D3** / − rail |
 
 ## 🗂️ Project structure
 
@@ -193,7 +197,7 @@ Had to rebuild things from scratch, both hardware and code.
 | | Milestone |
 |:-:|---|
 | 🌐 | Set up the toolchain and built the Wi-Fi dashboard with Stop / Avoid / Manual / Follow / Radar modes |
-| 🐛 | Sensor stuck on `-1`: code pins didn't match the build. Fixed to Trig D11 / Echo D12 / servo D10 |
+| 🐛 | Sensor stuck on `-1`: code pins didn't match the build. Fixed the pin map to match the wiring |
 | 🗂️ | Restructured code into `src/core`, `src/modes`, `src/web`; split the dashboard into HTML/CSS/JS with a build script |
 | 📶 | Fixed IP on the hotspot so the dashboard link stops changing |
 | 🧭 | Rewrote Avoid mode: stop at 20 cm, scan with the servo only, turn toward the farthest clear route |

@@ -3,9 +3,10 @@
 
 const int LEFT_WHEEL_PIN = 5;
 const int RIGHT_WHEEL_PIN = 6;
-const int SERVO_PIN = 10;
-const int TRIG_PIN = 11;
-const int ECHO_PIN = 12;
+const int SERVO_PIN = 9;
+const int TRIG_PIN = 10;
+const int ECHO_PIN = 11;
+const int BUZZER_PIN = 3;
 
 enum Mode { MODE_STOP, MODE_DEFAULT, MODE_MANUAL, MODE_FOLLOW, MODE_RADAR, MODE_COUNT };
 extern Mode mode;
