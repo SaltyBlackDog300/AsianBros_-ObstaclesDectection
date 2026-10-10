@@ -219,13 +219,6 @@ Six BSc Computer Engineering students — **AsianBros**, split into three teams:
 | 🔧 **Engineering** | Anik Rahman Siam, Trong Hoang | Cutting, drilling, building the body, wiring everything to the Arduino |
 | 🎨 **Decoration** | Nhat Minh Nguyen, Le Xuan Cuong | Designed and built the outer shell that covers the rover |
 
----|---|
-| NAME_1 | Software |
-| NAME_2 | Software |
-| NAME_3 | Electronics |
-| NAME_4 | Electronics |
-| NAME_5 | Chassis |
-| NAME_6 | Chassis |
 
 ---
 
