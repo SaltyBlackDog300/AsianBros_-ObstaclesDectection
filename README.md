@@ -130,6 +130,59 @@ flowchart LR
 - **Changing IP address** — assigned a fixed IP so the dashboard link stays the same between runs.
 - **Motor direction & speed** — tuned direction constants until manual controls matched, then swapped the slow steppers for continuous-rotation servos.
 
+## 📓 Log book
+
+> 48 hours, 6 people, 1 rover — how it came together.
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Day%201-Fri%209.10-1f6feb?style=flat-square">
+  <img src="https://img.shields.io/badge/Day%202-Sat%2010.10-8957e5?style=flat-square">
+  <img src="https://img.shields.io/badge/Day%203-Sun%2011.10-238636?style=flat-square">
+  <img src="https://img.shields.io/badge/Submission-16%3A30-d29922?style=flat-square">
+</p>
+
+<details open>
+<summary><h3>🟦 Day 1 · Friday 9.10 — Kick-off & first moves</h3></summary>
+
+| | Milestone |
+|:-:|---|
+| 🤝 | Team of 6 formed, picked **Challenge 1: Small Robot That Measures Distance to Obstacles** |
+| ✏️ | Brainstormed on paper: 2 wheels + motors + mainboard, light platform, sensor on a rotating mount, separate power for motors and sensor |
+| 📦 | Got the kit: Arduino UNO R4 WiFi, 2× 28BYJ-48 + ULN2003, HC-SR04, SG90, 2WD chassis |
+| 👥 | Split into 3 pairs: **chassis**, **electronics**, **software** |
+| 💻 | Set up the toolchain (`arduino-cli`, UNO R4 board package) and wrote the first sensor test |
+| 🌐 | First Wi-Fi dashboard with Stop / Avoid / Manual / Follow / Radar modes |
+
+<p align="center"><img src="NOTEBOOK_SCAN_URL" alt="Day 1 brainstorm notes" width="600"></p>
+</details>
+
+<details open>
+<summary><h3>🟪 Day 2 · Saturday 10.10 — Build, break, fix</h3></summary>
+
+| | Milestone |
+|:-:|---|
+| 🔥 | A jumper wire heated up from reversed wiring; found it and rewired |
+| 🐛 | Sensor stuck on `-1`: code pins didn't match the build. Fixed to Trig D11 / Echo D12 / servo D10 |
+| 🗂️ | Restructured code into `src/core`, `src/modes`, `src/web`; split the dashboard into HTML/CSS/JS with a build script |
+| 📶 | Fixed IP on the hotspot so the dashboard link stops changing |
+| 🧭 | Rewrote Avoid mode: stop at 20 cm, scan with the servo only, turn toward the farthest clear route |
+| 🎯 | Tuned Follow & Radar: narrower scan, steady target lock, radar dots fade after 3 s |
+| 🎙️ | Added voice control with the wake word **"rover"** |
+| ⚡ | Steppers hit their speed limit, so we swapped to **MG996R continuous servos** (D5/D6) and kept the stepper version in `backup_stepper/` |
+| 📝 | Wrote the README |
+</details>
+
+<details open>
+<summary><h3>🟩 Day 3 · Sunday 11.10 — Polish & pitch</h3></summary>
+
+| | Milestone |
+|:-:|---|
+| 🔧 | Final tuning on the servo drive |
+| 🎬 | Recorded the demo video |
+| ✅ | **16:30** Submitted |
+| 🎤 | **17:00** Pitch + live demo (5 min) and judge Q&A (3 min) |
+</details>
+
 ## 🔮 Future work
 
 - Camera-based object recognition
