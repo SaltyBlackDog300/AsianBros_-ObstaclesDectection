@@ -171,21 +171,35 @@ flowchart LR
 <details open>
 <summary><h3>🟪 Day 2 · Saturday 10.10 — Rebuilding from scratch</h3></summary>
 
+Had to rebuild things from scratch, both hardware and code.
+
+**🔧 Engineering**
+
 | | Milestone |
 |:-:|---|
-| 🔁 | Had to rebuild things from scratch, both hardware and code |
-| 🔧 | Engineering team cut, drilled and assembled the body, then wired everything to the Arduino |
-| 🖨️ | Hieu 3D-printed the custom parts: sensor mount, brackets, adapter and platform |
-| 🎨 | Minh and Cuong designed the outer shell in **OpenSCAD** |
-| 💻 | Software team set up the toolchain and built the Wi-Fi dashboard with Stop / Avoid / Manual / Follow / Radar modes |
+| 🪚 | Cut, drilled and assembled the body, then wired everything to the Arduino |
+| 🖨️ | 3D-printed the custom parts — see [3D design & printing](#3d-design) |
 | 🔥 | A jumper wire heated up from reversed wiring; found it and rewired |
+| ⚡ | Steppers hit their speed limit, so we swapped to **MG996R continuous servos** (D5/D6) |
+
+**🎨 Decoration**
+
+| | Milestone |
+|:-:|---|
+| 📐 | Designed the outer shell in **OpenSCAD** — see [3D design & printing](#3d-design) |
+
+**💻 Software**
+
+| | Milestone |
+|:-:|---|
+| 🌐 | Set up the toolchain and built the Wi-Fi dashboard with Stop / Avoid / Manual / Follow / Radar modes |
 | 🐛 | Sensor stuck on `-1`: code pins didn't match the build. Fixed to Trig D11 / Echo D12 / servo D10 |
 | 🗂️ | Restructured code into `src/core`, `src/modes`, `src/web`; split the dashboard into HTML/CSS/JS with a build script |
 | 📶 | Fixed IP on the hotspot so the dashboard link stops changing |
 | 🧭 | Rewrote Avoid mode: stop at 20 cm, scan with the servo only, turn toward the farthest clear route |
 | 🎯 | Tuned Follow & Radar: narrower scan, steady target lock, radar dots fade after 3 s |
 | 🎙️ | Added voice control with the wake word **"rover"** |
-| ⚡ | Steppers hit their speed limit, so we swapped to **MG996R continuous servos** (D5/D6) and kept the stepper version in `backup_stepper/` |
+| 💾 | Moved the code to servo drive and kept the stepper version in `backup_stepper/` |
 | 📝 | Wrote the README |
 
 <table>
@@ -194,25 +208,8 @@ flowchart LR
     <td align="center"><img src="images/day2_obstacle_test.jpg" alt="Obstacle course test" width="400"><br><sub>Testing in a chair obstacle course</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="images/day2_3d_printing.jpg" alt="3D printing" width="400"><br><sub>3D printing parts (Hieu)</sub></td>
-    <td align="center"><img src="images/cad_outer_shell.jpg" alt="Outer shell in OpenSCAD" width="400"><br><sub>Outer shell in OpenSCAD (Minh &amp; Cuong)</sub></td>
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <td align="center"><img src="images/cad_sensor_mount.jpg" alt="Sensor mount" width="190"><br><sub>Sensor mount</sub></td>
-    <td align="center"><img src="images/cad_bracket.jpg" alt="Bracket" width="190"><br><sub>Bracket</sub></td>
-    <td align="center"><img src="images/cad_adapter.jpg" alt="Adapter" width="190"><br><sub>Adapter</sub></td>
-    <td align="center"><img src="images/cad_platform.jpg" alt="Platform" width="190"><br><sub>Platform</sub></td>
-  </tr>
-</table>
-
-<table>
-  <tr>
     <td align="center"><a href="videos/rover_drive_test.mp4"><img src="images/rover_drive_test.gif" alt="Drive test" width="220"></a><br><sub>▶️ Drive test</sub></td>
     <td align="center"><a href="videos/dashboard_control.mp4"><img src="images/dashboard_control.gif" alt="Dashboard control" width="220"></a><br><sub>▶️ Driving from the dashboard</sub></td>
-    <td align="center"><a href="videos/3d_printing.mp4"><img src="images/3d_printing.gif" alt="3D printing" width="220"></a><br><sub>▶️ 3D printing (Hieu)</sub></td>
   </tr>
 </table>
 <p align="center"><sub>Click a clip to watch the full video.</sub></p>
@@ -229,6 +226,36 @@ flowchart LR
 | ⏳ | **16:30** Submit |
 | ⏳ | **17:00** Pitch + live demo (5 min) and judge Q&A (3 min) |
 </details>
+
+<a id="3d-design"></a>
+
+## 🖨️ 3D design & printing
+
+### 🔩 Custom parts — printed by Hieu
+
+Designed in OpenSCAD and printed on a Prusa MK4S.
+
+<table>
+  <tr>
+    <td align="center"><img src="images/cad_sensor_mount.jpg" alt="Sensor mount" width="190"><br><sub>Sensor mount</sub></td>
+    <td align="center"><img src="images/cad_bracket.jpg" alt="Bracket" width="190"><br><sub>Bracket</sub></td>
+    <td align="center"><img src="images/cad_adapter.jpg" alt="Adapter" width="190"><br><sub>Adapter</sub></td>
+    <td align="center"><img src="images/cad_platform.jpg" alt="Platform" width="190"><br><sub>Platform</sub></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td align="center"><img src="images/day2_3d_printing.jpg" alt="3D printing" width="300"><br><sub>On the printer</sub></td>
+    <td align="center"><a href="videos/3d_printing.mp4"><img src="images/3d_printing.gif" alt="3D printing" width="220"></a><br><sub>▶️ Printing in action</sub></td>
+  </tr>
+</table>
+
+### 🎨 Outer shell — Minh & Cuong
+
+Body cover that fits over the rover, designed in OpenSCAD.
+
+<p align="center"><img src="images/cad_outer_shell.jpg" alt="Outer shell in OpenSCAD" width="600"></p>
 
 ## 🔮 Future work
 
