@@ -1,12 +1,11 @@
 #pragma once
 #include <Arduino.h>
 
-const int LEFT_WHEEL_PIN = 5;
-const int RIGHT_WHEEL_PIN = 6;
-const int SERVO_PIN = 9;
-const int TRIG_PIN = 10;
-const int ECHO_PIN = 11;
-const int BUZZER_PIN = 3;
+const uint8_t LEFT_MOTOR_PINS[4] = {2, 3, 4, 5};
+const uint8_t RIGHT_MOTOR_PINS[4] = {6, 7, 8, 9};
+const int SERVO_PIN = 10;
+const int TRIG_PIN = 11;
+const int ECHO_PIN = 12;
 
 enum Mode { MODE_STOP, MODE_DEFAULT, MODE_MANUAL, MODE_FOLLOW, MODE_RADAR, MODE_DEFAULT2, MODE_DEFAULT3, MODE_DEFAULT4, MODE_COUNT };
 extern Mode mode;

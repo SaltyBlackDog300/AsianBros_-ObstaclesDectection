@@ -1,4 +1,4 @@
-const int TRIG = 10, ECHO = 11;
+const int TRIG = 11, ECHO = 12;
 
 void setup() {
   Serial.begin(9600);

@@ -60,21 +60,23 @@ The full saga is in the [log book](#log-book) below.
 | Component | Role |
 |---|---|
 | Arduino UNO R4 WiFi | Brain + Wi-Fi web server (ESP32-S3 radio) |
-| 2× MG996R continuous-rotation servos | Drive wheels |
+| 2× 28BYJ-48 stepper motors + ULN2003 drivers | Drive wheels |
 | HC-SR04 ultrasonic sensor | Distance measurement (2–400 cm) |
 | SG90 servo | Pans the sensor to scan routes |
 | 2WD chassis kit + caster | Frame |
 | Custom outer shell | Body cover designed in OpenSCAD by the decoration team |
 | 2× 18650 cells / USB power bank | Motor and logic power |
 
-### 🔌 Pin map
+### 🔌 Wiring
 
-| Part | Pins |
-|---|---|
-| Left wheel servo | D5 |
-| Right wheel servo | D6 |
-| Servo signal | D10 |
-| HC-SR04 Trig / Echo | D11 / D12 |
+| Part | Wire | Connects to |
+|---|---|---|
+| ⚙️ Stepper 1 (ULN2003 board) | IN1 / IN2 / IN3 / IN4 | **D2** / **D3** / **D4** / **D5** |
+| ⚙️ Stepper 1 (ULN2003 board) | VCC / GND | breadboard + / − |
+| ⚙️ Stepper 2 (ULN2003 board) | IN1 / IN2 / IN3 / IN4 | **D6** / **D7** / **D8** / **D9** |
+| ⚙️ Stepper 2 (ULN2003 board) | VCC / GND | breadboard + / − |
+| 🔄 Neck servo (SG90) | Brown / Red / Orange | breadboard − / + / **D10** |
+| 📡 Ultrasonic sensor (HC-SR04) | VCC / Trig / Echo / GND | breadboard + / **D11** / **D12** / breadboard − |
 
 ## 🗂️ Project structure
 
