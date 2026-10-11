@@ -48,12 +48,17 @@ The full saga is in the [log book](#log-book) below.
 
 | Mode | What it does |
 |---|---|
-| 🧭 **Avoid** (default) | Drives straight until an obstacle is closer than 20 cm, scans every route with the servo, then turns toward the farthest clear path. Turns around only when all routes are blocked. |
+| 🧭 **Default** | Drives straight until something is in the way, scans 0–180° with the neck servo, picks left, front or right, turns and lines itself up with the sensor. Backs up if it gets stuck. |
+| 🧭 **Default 2** | Earlier version of Default: stops at 20 cm and chooses between the same three routes. |
+| 🧭 **Default 3** | Finds the middle of the widest gap (at least 45 cm open) and aims straight at it in small steps. |
+| 🧱 **Default 4** | Wall follower. Keeps about 23 cm from the wall on its right, checks ahead every 0.8 s and turns at corners. |
 | 🎮 **Manual** | Drive forward / back / left / right from the dashboard buttons. |
 | 🎯 **Follow** | Locks onto the nearest object in front and follows it at a set distance. |
 | 📡 **Radar** | Sweeps the sensor and draws a live radar on the dashboard; stale points fade out after 3 s. |
-| ⛔ **Stop** | Instantly halts all motors. |
+| ⛔ **Stop** | Stops all motors. |
 | 🎙️ **Voice** | Wake word **"rover"** + a command (e.g. *"rover, stop"*). No push-to-talk button needed. |
+
+The dashboard also has sliders for drive and turn speed, a setting for how long a 90° turn takes, and a live speed readout.
 
 ## 🧰 Hardware
 
@@ -82,17 +87,33 @@ The full saga is in the [log book](#log-book) below.
 
 ```
 rover/
-├── rover.ino              # Entry point: setup() + loop()
-├── config.h               # Wi-Fi name, password, fixed IP
+├── rover.ino                  # setup() and loop()
+├── config.h                   # Wi-Fi name, password, fixed IP
 ├── src/
-│   ├── core/              # Motors, sensor, servo, config
-│   ├── modes/             # Avoid, Manual, Follow, Radar
-│   └── web/               # Wi-Fi server + embedded dashboard.h
-├── web/                   # Dashboard source (HTML / CSS / JS)
+│   ├── core/
+│   │   ├── core.h             # pins, modes, shared state
+│   │   ├── motors.cpp         # stepper driving
+│   │   ├── sensor.cpp         # ultrasonic sensor, neck servo, speed estimate
+│   │   ├── display.cpp        # LED matrix shows the current mode
+│   │   └── rover_state.cpp    # current mode and mode names
+│   ├── modes/
+│   │   ├── modes.h / modes.cpp
+│   │   ├── default_mode.cpp
+│   │   ├── default2_mode.cpp
+│   │   ├── default3_mode.cpp
+│   │   ├── default4_mode.cpp
+│   │   ├── manual_mode.cpp
+│   │   ├── follow_mode.cpp
+│   │   └── radar_mode.cpp
+│   └── web/
+│       ├── web_server.cpp/.h  # Wi-Fi + HTTP server
+│       └── dashboard.h        # dashboard page, generated from web/
+├── web/                       # dashboard source (HTML / CSS / JS)
 ├── tools/
-│   ├── build_dashboard.py # Packs web/ into src/web/dashboard.h
-│   └── sensor_test/       # Standalone ultrasonic sensor test
-└── backup_stepper/        # Earlier stepper-motor version
+│   ├── build_dashboard.py     # packs web/ into src/web/dashboard.h
+│   └── sensor_test/           # standalone ultrasonic sensor test
+├── backup_stepper/            # day 2 stepper version (prototype 1)
+└── _servo_version/            # the 360° servo attempt from day 3 (didn't work)
 ```
 
 ## 🚀 Getting started
