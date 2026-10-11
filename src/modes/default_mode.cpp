@@ -27,12 +27,12 @@ static void startScan() {
 
 static void turnToward(int angle) {
   int offset = angle - NECK_CENTER;
-  long ms = TURN_90_MS * (long)abs(offset) / 90;
+  long steps = TURN_90_STEPS * (long)abs(offset) / 90;
   if (abs(offset) <= STRAIGHT_ZONE) {
     step = CRUISE;
     return;
   }
-  drive(offset < 0 ? 'r' : 'l', ms);
+  drive(offset < 0 ? 'r' : 'l', steps);
   step = TURNING;
 }
 
@@ -77,7 +77,7 @@ void defaultModeUpdate() {
       }
       setNeck(NECK_CENTER);
       if (bestDist <= STOP_CM) {
-        drive('r', TURN_90_MS * 2);
+        drive('r', TURN_90_STEPS * 2);
         step = TURNING_AROUND;
       } else {
         turnToward(bestAngle);

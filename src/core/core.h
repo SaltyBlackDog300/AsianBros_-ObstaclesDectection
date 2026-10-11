@@ -1,8 +1,8 @@
 #pragma once
 #include <Arduino.h>
 
-const int LEFT_WHEEL_PIN = 5;
-const int RIGHT_WHEEL_PIN = 6;
+const uint8_t LEFT_MOTOR_PINS[4] = {2, 3, 4, 5};
+const uint8_t RIGHT_MOTOR_PINS[4] = {6, 7, 8, 9};
 const int SERVO_PIN = 10;
 const int TRIG_PIN = 11;
 const int ECHO_PIN = 12;
@@ -11,13 +11,13 @@ enum Mode { MODE_STOP, MODE_DEFAULT, MODE_MANUAL, MODE_FOLLOW, MODE_RADAR, MODE_
 extern Mode mode;
 extern const char* const MODE_NAMES[MODE_COUNT];
 
-const long BACK_MS = 600;
-const long TURN_90_MS = 600;
+const long BACK_STEPS = 1200;
+const long TURN_90_STEPS = 2048;
 extern char motion;
 void motorsBegin();
 void motorsUpdate();
 void drive(char direction);
-void drive(char direction, long ms);
+void drive(char direction, long steps);
 
 const int NECK_CENTER = 90;
 const int NECK_RIGHT = 10;

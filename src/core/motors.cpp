@@ -1,41 +1,60 @@
 #include "core.h"
-#include <Servo.h>
 
-const int STOP_US = 1500;
-const int SPEED_US = 500;
-const int LEFT_TRIM_US = 0;
-const int RIGHT_TRIM_US = 0;
+const unsigned long STEP_US = 800;
 const int LEFT_FORWARD = 1;
-const int RIGHT_FORWARD = -1;
+const int RIGHT_FORWARD = 1;
 
-static Servo leftWheel;
-static Servo rightWheel;
-static long runMs = -1;
-static unsigned long startedAt = 0;
+const uint8_t SEQUENCE[8][4] = {
+  {1, 0, 0, 0}, {1, 1, 0, 0}, {0, 1, 0, 0}, {0, 1, 1, 0},
+  {0, 0, 1, 0}, {0, 0, 1, 1}, {0, 0, 0, 1}, {1, 0, 0, 1},
+};
+
+struct Stepper {
+  const uint8_t* pins;
+  int phase;
+
+  void begin() {
+    for (int i = 0; i < 4; i++) pinMode(pins[i], OUTPUT);
+  }
+
+  void step(int dir) {
+    phase = (phase + dir + 8) % 8;
+    for (int i = 0; i < 4; i++) digitalWrite(pins[i], SEQUENCE[phase][i]);
+  }
+
+  void release() {
+    for (int i = 0; i < 4; i++) digitalWrite(pins[i], LOW);
+  }
+};
+
+static Stepper leftMotor = {LEFT_MOTOR_PINS, 0};
+static Stepper rightMotor = {RIGHT_MOTOR_PINS, 0};
+static int leftDir = 0;
+static int rightDir = 0;
+static long stepsLeft = -1;
+static unsigned long lastStepAt = 0;
 char motion = 's';
 
-static void setWheels(int left, int right) {
-  leftWheel.writeMicroseconds(STOP_US + LEFT_TRIM_US + left * LEFT_FORWARD * SPEED_US);
-  rightWheel.writeMicroseconds(STOP_US + RIGHT_TRIM_US + right * RIGHT_FORWARD * SPEED_US);
-}
-
 void motorsBegin() {
-  leftWheel.attach(LEFT_WHEEL_PIN);
-  rightWheel.attach(RIGHT_WHEEL_PIN);
+  leftMotor.begin();
+  rightMotor.begin();
   drive('s');
 }
 
-void drive(char direction, long ms) {
+void drive(char direction, long steps) {
   switch (direction) {
-    case 'f': setWheels(1, 1);   break;
-    case 'b': setWheels(-1, -1); break;
-    case 'l': setWheels(-1, 1);  break;
-    case 'r': setWheels(1, -1);  break;
-    default:  setWheels(0, 0);   direction = 's'; break;
+    case 'f': leftDir = 1;  rightDir = 1;  break;
+    case 'b': leftDir = -1; rightDir = -1; break;
+    case 'l': leftDir = -1; rightDir = 1;  break;
+    case 'r': leftDir = 1;  rightDir = -1; break;
+    default:  leftDir = 0;  rightDir = 0;  direction = 's'; break;
   }
   motion = direction;
-  runMs = direction == 's' ? -1 : ms;
-  startedAt = millis();
+  stepsLeft = direction == 's' ? -1 : steps;
+  if (direction == 's') {
+    leftMotor.release();
+    rightMotor.release();
+  }
 }
 
 void drive(char direction) {
@@ -43,5 +62,9 @@ void drive(char direction) {
 }
 
 void motorsUpdate() {
-  if (motion != 's' && runMs > 0 && millis() - startedAt >= (unsigned long)runMs) drive('s');
+  if (motion == 's' || micros() - lastStepAt < STEP_US) return;
+  lastStepAt = micros();
+  leftMotor.step(leftDir * LEFT_FORWARD);
+  rightMotor.step(rightDir * RIGHT_FORWARD);
+  if (stepsLeft > 0 && --stepsLeft == 0) drive('s');
 }

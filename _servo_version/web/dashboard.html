@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ECHOLOT · Sonar Navigation Suite</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="topbar">
+  <div class="title">
+    <h1>ECHOLOT</h1>
+  </div>
+  <div class="clocks">
+    <div class="clock"><small>UTC</small><b id="utc">--:--:--</b></div>
+    <div class="clock"><small>MET</small><b id="met">00:00:00</b></div>
+  </div>
+</div>
+<main>
+  <section class="panel" id="telem" data-label="TELEMETRY">
+    <div class="stats">
+      <div class="stat"><small>MODE</small><b id="mode">-</b></div>
+      <div class="stat"><small>RANGE AHEAD</small><b id="dist">-</b></div>
+      <div class="stat"><small>SPEED</small><b id="speed">--</b><small id="peak">PEAK --</small></div>
+      <div class="stat"><small>DOWNLINK</small><b id="link" class="bad">ACQ</b></div>
+    </div>
+    <div class="bar"><i id="distbar"></i></div>
+    <div class="scale"><span>0</span><span>50</span><span>100</span><span>150</span><span>200 CM</span></div>
+  </section>
+  <section class="panel" id="modes" data-label="FLIGHT DIRECTOR · MODE SELECT">
+    <div class="modes">
+      <button data-mode="default">Auto</button>
+      <button data-mode="follow">Follow</button>
+      <button data-mode="radar">Radar</button>
+      <button data-mode="manual">Manual</button>
+      <button data-mode="stop" id="stop">Abort</button>
+    </div>
+    <div class="tune" id="learned">AUTO-CALIBRATED · WAITING FOR FIRST RUN</div>
+  </section>
+  <section class="panel" id="radarp" data-label="NAV · SONAR SWEEP">
+    <canvas id="radar" width="480" height="260"></canvas>
+  </section>
+  <section class="panel" id="drivep" data-label="GUIDANCE · MANUAL DRIVE">
+    <div class="pad">
+      <span></span><button data-drive="f">&#9650;</button><span></span>
+      <button data-drive="l">&#9664;</button><button data-drive="s">&#9632;</button><button data-drive="r">&#9654;</button>
+      <span></span><button data-drive="b">&#9660;</button><span></span>
+    </div>
+  </section>
+  <section class="panel" id="comm" data-label="CAPCOM · VOICE LOOP">
+    <button id="voice">&#127908; Start voice</button>
+    <div id="heard">Say "rover" then: auto, follow, radar, manual, stop, forward, back, left, right</div>
+  </section>
+  <section class="panel" id="logp" data-label="EVENT LOG">
+    <pre id="log"></pre>
+  </section>
+</main>
+<footer>ECHOLOT · BUILT BY SIX FIRST-YEAR ENGINEERS IN 48 HOURS · LUT DEEPTECH HACKATHON 2026</footer>
+<script src="dashboard.js"></script>
+</body>
+</html>
