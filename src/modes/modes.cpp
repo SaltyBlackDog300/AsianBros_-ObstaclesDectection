@@ -5,6 +5,9 @@ void setMode(Mode m) {
   drive('s');
   switch (m) {
     case MODE_DEFAULT: defaultModeStart(); break;
+    case MODE_DEFAULT2: default2ModeStart(); break;
+    case MODE_DEFAULT3: default3ModeStart(); break;
+    case MODE_DEFAULT4: default4ModeStart(); break;
     case MODE_MANUAL:  manualModeStart();  break;
     case MODE_FOLLOW:  followModeStart();  break;
     case MODE_RADAR:   radarModeStart();   break;
@@ -34,6 +37,9 @@ static void safetyBrake() {
 void modesUpdate() {
   switch (mode) {
     case MODE_DEFAULT: defaultModeUpdate(); break;
+    case MODE_DEFAULT2: default2ModeUpdate(); break;
+    case MODE_DEFAULT3: default3ModeUpdate(); break;
+    case MODE_DEFAULT4: default4ModeUpdate(); break;
     case MODE_MANUAL:  manualModeUpdate();  break;
     case MODE_FOLLOW:  followModeUpdate();  break;
     case MODE_RADAR:   radarModeUpdate();   break;

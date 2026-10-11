@@ -29,12 +29,44 @@ static String statusJson() {
   json += distanceCm;
   json += ",\"neck\":";
   json += neckAngle;
+  json += ",\"speed\":";
+  json += (long)(speedCms < 0 ? -1 : speedCms + 0.5f);
+  json += ",\"peak\":";
+  json += (long)(peakSpeedCms + 0.5f);
+  json += ",\"turn\":";
+  json += turnPercent;
+  json += ",\"drive\":";
+  json += drivePercent;
+  json += ",\"stop\":";
+  json += stopCm;
+  json += ",\"t90\":";
+  json += turn90Ms;
   json += ",\"motion\":\"";
   json += motion;
   json += "\",\"radar\":[";
   for (int i = 0; i < 19; i++) {
     if (i) json += ',';
     json += radar[i];
+  }
+  json += "]}";
+  return json;
+}
+
+static String mapJson() {
+  String json = "{\"id\":";
+  json += mapId;
+  json += ",\"step\":";
+  json += mapScanStep;
+  json += ",\"reads\":";
+  json += mapReads;
+  json += ",\"route\":";
+  json += mapRoute;
+  json += ",\"aim\":";
+  json += mapAim;
+  json += ",\"pts\":[";
+  for (int i = 0; i < mapPoints; i++) {
+    if (i) json += ',';
+    json += mapDist[i];
   }
   json += "]}";
   return json;
@@ -85,6 +117,22 @@ void webUpdate() {
     String d = queryValue(path, "d");
     if (mode == MODE_MANUAL && d.length() == 1) manualModeCommand(d[0]);
     sendResponse(client, "application/json", statusJson().c_str());
+  } else if (path.startsWith("/map")) {
+    sendResponse(client, "application/json", mapJson().c_str());
+  } else if (path.startsWith("/tune")) {
+    String stepValue = queryValue(path, "step");
+    String readsValue = queryValue(path, "reads");
+    String turnValue = queryValue(path, "turn");
+    if (turnValue.length()) turnPercent = constrain(turnValue.toInt(), 10, 100);
+    String driveValue = queryValue(path, "drive");
+    if (driveValue.length()) drivePercent = constrain(driveValue.toInt(), 10, 100);
+    String stopValue = queryValue(path, "stop");
+    if (stopValue.length()) stopCm = constrain(stopValue.toInt(), 6, 40);
+    String t90Value = queryValue(path, "t90");
+    if (t90Value.length()) turn90Ms = constrain(t90Value.toInt(), 200, 6000);
+    if (stepValue.length()) mapStep = constrain(stepValue.toInt(), 1, 30);
+    if (readsValue.length()) mapReads = constrain(readsValue.toInt(), 1, 5);
+    sendResponse(client, "application/json", mapJson().c_str());
   } else if (path.startsWith("/status")) {
     sendResponse(client, "application/json", statusJson().c_str());
   } else if (path.startsWith("/dashboard.css")) {

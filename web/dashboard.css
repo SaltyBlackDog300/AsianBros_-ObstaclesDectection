@@ -1,15 +1,17 @@
 :root {
-  --bg: #060a10;
-  --panel: #0b121c;
-  --panel2: #0f1825;
-  --line: #1d2b3d;
+  --bg: #0a0d0b;
+  --panel: #111613;
+  --panel2: #161d19;
+  --line: #24302a;
   --grid: #13202f;
-  --text: #d6e2ee;
-  --dim: #6b7d92;
+  --text: #dfe9e2;
+  --dim: #7f9387;
   --green: #39ff88;
   --amber: #ffb340;
   --red: #ff4d4d;
-  --blue: #4fc3ff;
+  --blue: #8fe3ad;
+  --cell: rgba(57, 255, 136, 0.035);
+  --cell-major: rgba(57, 255, 136, 0.08);
   --mono: "SF Mono", "Consolas", "Menlo", "DejaVu Sans Mono", monospace;
 }
 
@@ -18,22 +20,25 @@
 }
 
 body {
+  position: relative;
   margin: 0;
   font-family: var(--mono);
   color: var(--text);
+  min-height: 100vh;
   background-color: var(--bg);
   background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 32px 32px;
+    repeating-linear-gradient(0deg, var(--cell-major) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(90deg, var(--cell-major) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(0deg, var(--cell) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(90deg, var(--cell) 0 1px, transparent 1px 24px);
+  background-attachment: fixed;
 }
 
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px 3px);
+
+main,
+footer {
+  position: relative;
+  z-index: 1;
 }
 
 .topbar {
@@ -43,21 +48,19 @@ body::after {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 10px 16px;
+  padding-block: 10px;
+  padding-inline: max(16px, calc((100% - 1400px) / 2 + 16px));
   border-bottom: 2px solid var(--line);
-  background: linear-gradient(#0d1726, #08101a);
-}
-
-.patch {
-  flex: none;
-  width: 42px;
-  height: 42px;
+  background: #0e120f;
+  backdrop-filter: blur(6px);
 }
 
 .title h1 {
   margin: 0;
-  font-size: 16px;
-  letter-spacing: 0.18em;
+  color: var(--blue);
+  font-size: 22px;
+  letter-spacing: 0.42em;
+  text-shadow: 0 0 14px rgba(79, 195, 255, 0.45);
 }
 
 .title small {
@@ -88,16 +91,16 @@ body::after {
 
 main {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
-    "telem radar"
-    "modes radar"
-    "drive comm"
-    "log   log";
-  gap: 12px;
-  max-width: 1100px;
+    "map   map   telem"
+    "map   map   radar"
+    "modes drive comm"
+    "log   log   log";
+  gap: 14px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 14px;
+  padding: 16px;
 }
 
 .panel {
@@ -117,7 +120,7 @@ main {
   padding: 5px 10px;
   border-bottom: 1px solid var(--line);
   background: var(--panel2);
-  color: var(--blue);
+  color: var(--amber);
   font-size: 10px;
   letter-spacing: 0.2em;
 }
@@ -139,12 +142,13 @@ main {
 #radarp { grid-area: radar; }
 #drivep { grid-area: drive; }
 #comm   { grid-area: comm; }
+#mapp   { grid-area: map; }
 #logp   { grid-area: log; }
 
 .stats {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 14px;
 }
 
 .stat small {
@@ -159,6 +163,11 @@ main {
   font-size: 24px;
   text-transform: uppercase;
   text-shadow: 0 0 8px rgba(57, 255, 136, 0.4);
+}
+
+#peak {
+  margin-top: 2px;
+  color: var(--amber);
 }
 
 #link {
@@ -206,15 +215,19 @@ main {
 
 .modes {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   gap: 6px;
 }
+
+.modes button { grid-column: span 4; }
+
+.modes button[data-mode^="default"] { grid-column: span 3; }
 
 button {
   padding: 12px 4px;
   border: 1px solid var(--line);
   border-radius: 3px;
-  background: #111c2a;
+  background: #18201b;
   color: var(--text);
   font: inherit;
   font-size: 12px;
@@ -240,12 +253,12 @@ button:active {
   height: 8px;
   margin: 0 auto 6px;
   border-radius: 50%;
-  background: #22303f;
+  background: #2c3a31;
 }
 
 .modes button.on {
   border-color: var(--green);
-  background: #0b2018;
+  background: #123321;
   color: var(--green);
 }
 
@@ -255,6 +268,7 @@ button:active {
 }
 
 #stop {
+  grid-column: 1 / -1;
   border-color: var(--red);
   background: #3a0d0d;
   color: #ffd6d6;
@@ -312,6 +326,43 @@ canvas {
   text-align: center;
 }
 
+.tune {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+  color: var(--dim);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+}
+
+.tune input {
+  width: 72px;
+  margin-left: 6px;
+  padding: 4px 6px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: #18201b;
+  color: var(--text);
+  font: inherit;
+}
+
+.tune select {
+  margin-left: 6px;
+  padding: 4px 6px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: #18201b;
+  color: var(--text);
+  font: inherit;
+}
+
+#mapinfo {
+  margin-left: auto;
+  color: var(--amber);
+}
+
 #log {
   height: 120px;
   margin: 0;
@@ -327,10 +378,21 @@ canvas {
 
 footer {
   padding: 6px 0 18px;
-  color: var(--dim);
+  color: #6b7d92;
   font-size: 11px;
   letter-spacing: 0.1em;
   text-align: center;
+}
+
+@media (max-width: 1200px) {
+  main {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "map   map"
+      "telem radar"
+      "modes drive"
+      "comm  log";
+  }
 }
 
 @media (max-width: 760px) {
@@ -338,15 +400,20 @@ footer {
     grid-template-columns: 1fr;
     grid-template-areas:
       "telem"
+      "map"
+      "radar"
       "modes"
       "drive"
-      "radar"
       "comm"
       "log";
   }
 
   .clocks .clock:first-child {
     display: none;
+  }
+
+  .stats {
+    grid-template-columns: 1fr 1fr;
   }
 
   .stat b {

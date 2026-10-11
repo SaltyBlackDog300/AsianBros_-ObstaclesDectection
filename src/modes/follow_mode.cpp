@@ -39,10 +39,10 @@ static int probeAngle() {
 
 static void steerBody() {
   if (motion != 's') return;
-  if (target < NECK_CENTER - CENTER_ZONE)      drive('r', TURN_90_STEPS / 6);
-  else if (target > NECK_CENTER + CENTER_ZONE) drive('l', TURN_90_STEPS / 6);
-  else if (targetDist > FAR_CM)                drive('f', 400);
-  else if (targetDist < NEAR_CM)               drive('b', 300);
+  if (target < NECK_CENTER - CENTER_ZONE)      drive('r', TURN_90_MS / 6);
+  else if (target > NECK_CENTER + CENTER_ZONE) drive('l', TURN_90_MS / 6);
+  else if (targetDist > FAR_CM)                drive('f', 250);
+  else if (targetDist < NEAR_CM)               drive('b', 200);
 }
 
 static void startSearching(int fromAngle) {
