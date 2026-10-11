@@ -45,7 +45,21 @@ function render(s) {
   drawRadar(s);
 }
 const setMode = m => call('/mode?m=' + m);
+const triggerEmergencyStop = async () => {
+  stopDrive();
+  try {
+    const r = await fetch('/emergency', { cache: 'no-store' });
+    const s = await r.json();
+    render(s);
+    setLink(true);
+    log('EMERGENCY STOP ENGAGED. ROVER IS HALTED.');
+  } catch (e) {
+    setLink(false);
+    log('EMERGENCY STOP REQUEST FAILED.');
+  }
+};
 document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
+$('emergency').onclick = triggerEmergencyStop;
 let driveTimer = null;
 async function startDrive(d) {
   stopDrive();
@@ -62,7 +76,15 @@ document.querySelectorAll('[data-drive]').forEach(b => {
 });
 const keys = { ArrowUp: 'f', ArrowDown: 'b', ArrowLeft: 'l', ArrowRight: 'r' };
 let keyHeld = null;
-addEventListener('keydown', e => { const d = keys[e.key]; if (d && keyHeld !== d) { keyHeld = d; startDrive(d); e.preventDefault(); } });
+addEventListener('keydown', e => {
+  if (e.code === 'Space') {
+    e.preventDefault();
+    triggerEmergencyStop();
+    return;
+  }
+  const d = keys[e.key];
+  if (d && keyHeld !== d) { keyHeld = d; startDrive(d); e.preventDefault(); }
+});
 addEventListener('keyup', e => { if (keys[e.key]) { keyHeld = null; stopDrive(); } });
 const RADAR_FADE_MS = 3000;
 const radarSeen = new Array(19).fill(0);
@@ -107,7 +129,7 @@ function drawRadar(s) {
   g.strokeStyle = 'rgba(57,255,136,.9)'; g.lineWidth = 2; g.beginPath(); g.moveTo(cx, cy); g.lineTo(nx, ny); g.stroke(); g.lineWidth = 1;
 }
 const words = [
-  [/stop|halt|freeze|abort/, () => { stopDrive(); setMode('stop'); }],
+  [/emergency|panic|hard stop|stop|halt|freeze|abort/, () => { stopDrive(); setMode('stop'); }],
   [/follow|search|track/, () => setMode('follow')],
   [/default|avoid|auto/, () => setMode('default')],
   [/radar|scan/, () => setMode('radar')],

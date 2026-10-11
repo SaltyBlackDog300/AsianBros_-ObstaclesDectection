@@ -15,8 +15,8 @@
 
 <table>
   <tr>
-    <td><img src="PHOTO_1_URL" alt="Rover — front view" width="420"></td>
-    <td><img src="PHOTO_2_URL" alt="Rover — side view" width="420"></td>
+    <td><img src="images/finalProt (1).jpeg" alt="Rover — front view" width="420"></td>
+    <td><img src="images/finalProt (2).jpeg" alt="Rover — side view" width="420"></td>
   </tr>
 </table>
 

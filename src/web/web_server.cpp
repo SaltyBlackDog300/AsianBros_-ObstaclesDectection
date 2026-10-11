@@ -81,6 +81,10 @@ void webUpdate() {
     Mode m;
     if (modeFromName(queryValue(path, "m"), m)) setMode(m);
     sendResponse(client, "application/json", statusJson().c_str());
+  } else if (path.startsWith("/emergency")) {
+    drive('s');
+    setMode(MODE_STOP);
+    sendResponse(client, "application/json", statusJson().c_str());
   } else if (path.startsWith("/drive")) {
     String d = queryValue(path, "d");
     if (mode == MODE_MANUAL && d.length() == 1) manualModeCommand(d[0]);
