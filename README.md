@@ -18,12 +18,11 @@
     <td align="center"><img src="images/rover_front.jpg" alt="Rover, front view" width="420"><br><sub>Front</sub></td>
     <td align="center"><img src="images/rover_back.jpg" alt="Rover, back view" width="420"><br><sub>Back</sub></td>
   </tr>
-  
   <tr>
     
   </tr>
 </table>
-
+<td align="center"><img src="images/UI.jpeg" alt="UI" width="1080"><br><sub>UI</sub></td>
 <br>
 
 ### 
@@ -280,7 +279,7 @@ Body cover that fits over the rover, designed in OpenSCAD.
 
 ## 👥 Team
 
-Six 1st and 2nd year BSc computational engineering students, the **AsianBros**, split into three teams:
+Six 1st year BSc computational engineering students, the **AsianBros**, split into three teams:
 
 | Team | Members | What they did |
 |---|---|---|
