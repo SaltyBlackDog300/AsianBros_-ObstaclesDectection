@@ -18,6 +18,10 @@
     <td align="center"><img src="images/rover_front.jpg" alt="Rover, front view" width="420"><br><sub>Front</sub></td>
     <td align="center"><img src="images/rover_back.jpg" alt="Rover, back view" width="420"><br><sub>Back</sub></td>
   </tr>
+  
+  <tr>
+    
+  </tr>
 </table>
 
 <br>
@@ -26,6 +30,9 @@
 
 
 [![Demo Video](https://img.shields.io/badge/▶_Demo_Video-Watch_Now-red?style=for-the-badge)](https://drive.google.com/drive/folders/18OhLk0SzIVRIewPOJ9jgTZvdST5h4VTU)
+
+[![Presentation Slides](https://img.shields.io/badge/📊_Presentation_Slides-View_Now-blue?style=for-the-badge)](https://drive.google.com/file/d/1humoDalXv7shxewihoUJDhTzp3ChKCxY/view?usp=drivesdk)
+
 
 
 <!-- If the video is on YouTube instead, use:
@@ -191,13 +198,7 @@ We spent day 1 understanding the challenge and planning our approach. Mostly we 
   <tr>
     <td align="center"><img src="images/day1_prototype.jpg" alt="Chassis" width="400"><br><sub>Messing around with the chassis</sub></td>
     <td align="center"><img src="images/day1_chassis_bottom.jpg" alt="Chassis underside" width="400"><br><sub>Chassis underside</sub></td>
-  </tr>
-  <tr>
     <td align="center"><img src="images/day1_notes.jpg" alt="Brainstorm notes" width="400"><br><sub>Brainstorm notes</sub></td>
-    <td align="center"><img src="images/day1_planning.jpg" alt="Planning session" width="400"><br><sub>Planning the build</sub></td>
-  </tr>
-  <tr>
-    <td align="center" colspan="2"><img src="images/day1_team.jpg" alt="Team" width="400"><br><sub>Day 1 done</sub></td>
   </tr>
 </table>
 </details>
